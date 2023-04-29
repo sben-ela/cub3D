@@ -61,11 +61,8 @@ void	draw_walls(t_data *data, double len, int x, double wallx)
     x_prime = data->texture.width * wallx;
 	while (start + i < end)
 	{
-		y_prime = (i + skipped) / len * data->texture.height;
-		// if (data->map[(int)((start + i) / 100)][(int)(x / 100)] == 'D')
-			// ft_put_pixel(&data->img, x, start + i, ft_get_pixel(&data->door, x_prime, y_prime));
-		// else
+		y_prime = (double)((double)(i + skipped) / len) * data->texture.height;
 		ft_put_pixel(&data->img, x, start + i, ft_get_pixel(texture, x_prime, y_prime));
-        	i++;
+        i++;
 	}
 }

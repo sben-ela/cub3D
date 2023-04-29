@@ -39,7 +39,7 @@ void    init_data(t_data *data, char *map)
 	data->sdoor.x = -1;
 	data->sdoor.y = -1;
 	data->w = HEIGHT;
-	data->door.img = mlx_xpm_file_to_image(data->mlx, "textures/door.xpm", &data->door.width, &data->door.height);
+	data->door.img = mlx_xpm_file_to_image(data->mlx, "textures/door_1.xpm", &data->door.width, &data->door.height);
 	data->door.addr = mlx_get_data_addr(data->door.img, &data->door.bpp, &data->door.size_line, &data->door.endian);
 	data->texture.img = mlx_xpm_file_to_image(data->mlx, "textures/wall.xpm", &data->texture.width, &data->texture.height);
 	data->texture.addr = mlx_get_data_addr(data->texture.img, &data->texture.bpp, &data->texture.size_line, &data->texture.endian);

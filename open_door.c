@@ -1,6 +1,5 @@
 #include "cub.h"
 
-
 void	open_door(t_data *data)
 {
 	int	x;
