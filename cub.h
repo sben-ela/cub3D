@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/04/29 21:35:12 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/04/30 10:39:06 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct data
     t_img       img; 
     t_img       texture;
 	t_img		door;
+	t_img		celing_texture;
 	double		speed;
     int		    count;
     int         *position;
@@ -129,7 +130,7 @@ typedef struct dist
 	int		direction;
 } t_dist;
 
-
+int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
 void		draw_floor_and_celing(t_data *data);
@@ -144,5 +145,5 @@ int			ft_strlen(const char *s);
 char		*get_next_line(int fd);
 int			count_line(char *av);
 char		**get_map(int fd, int count);
-
+void		celing(t_data *data);
 #endif

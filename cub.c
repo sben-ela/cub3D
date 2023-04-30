@@ -43,6 +43,8 @@ void    init_data(t_data *data, char *map)
 	data->door.addr = mlx_get_data_addr(data->door.img, &data->door.bpp, &data->door.size_line, &data->door.endian);
 	data->texture.img = mlx_xpm_file_to_image(data->mlx, "textures/wall.xpm", &data->texture.width, &data->texture.height);
 	data->texture.addr = mlx_get_data_addr(data->texture.img, &data->texture.bpp, &data->texture.size_line, &data->texture.endian);
+	data->celing_texture.img = mlx_xpm_file_to_image(data->mlx, "textures/celing.xpm", &data->door.width, &data->door.height);
+	data->celing_texture.addr = mlx_get_data_addr(data->celing_texture.img, &data->celing_texture.bpp, &data->celing_texture.size_line, &data->celing_texture.endian);
 }
 
 int	main(int ac, char **av)

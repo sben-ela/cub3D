@@ -11,6 +11,8 @@ void draw_floor_and_celing(t_data *data)
     {
         j = 0;
         color = data->celing;
+		if (data->map[(int)data->player.y][(int)data->player.x] == '4')
+			color = GREY;
         while (j < HEIGHT)
         {
             if (j > HEIGHT / 2)

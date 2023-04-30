@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/04/29 18:01:45 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:26:09 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ void    draw_minimap(t_data *data)
 				ft_putcube(data, x, y, BLACK);
 			else if (data->map[y][x] == 'D')
 				ft_putcube(data, x, y, RED);
+			else if (data->map[y][x] == 'O')
+				ft_putcube(data, x, y, GREEN);
 			else
 				ft_putcube(data, x, y, YELLOW);
 			x++;
