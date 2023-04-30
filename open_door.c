@@ -61,6 +61,10 @@ int	count_line_map(char **map)
 	return (i);
 }
 
+
+
+
+
 // int	floud(char **map, int i, int j)
 // {
 // 	if (i <= 0 || i >= count_line_map(map) - 1 || j <= 0

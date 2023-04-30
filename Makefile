@@ -18,7 +18,7 @@ fclean: clean
 
 re: fclean all
 
-COM = "iantar"
+COM="iantar"
 git:
 	git add .
 	git commit -m ${COM}
