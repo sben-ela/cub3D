@@ -17,3 +17,9 @@ fclean: clean
 	rm -f $(NAME) $(PROG)
 
 re: fclean all
+
+COM = "iantar"
+git:
+	git add .
+	git commit -m ${COM}
+	git push
