@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/04/30 11:26:09 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/04/30 11:34:35 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void    draw_minimap(t_data *data)
 		}
 		y++;
 	}
+	
 	ft_putplayer(data, data->player.x, data->player.y, RED);
 }
 
