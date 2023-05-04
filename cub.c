@@ -19,11 +19,13 @@ int	player(int keypress, int x, int y, t_data *data)
 
 void    init_data(t_data *data, char *map)
 {
+	int hight, width;
+
 	data->celing = CELING;
 	data->floor = FLOOR;
 	data->fd = open(map, O_RDONLY);
 	if (data->fd < 0)
-		printf("bad file discriptor :)\n"), exit (1);
+		printf("bad file disncriptor :)\n"), exit (1);
 	data->count = count_line(map);
 	data->map = get_map(data->fd, data->count);
 	data->mlx = mlx_init();
@@ -39,12 +41,25 @@ void    init_data(t_data *data, char *map)
 	data->sdoor.x = -1;
 	data->sdoor.y = -1;
 	data->w = HEIGHT;
+	data->up_down = 0;
+	data->left_right = 0;
 	data->door.img = mlx_xpm_file_to_image(data->mlx, "textures/door_1.xpm", &data->door.width, &data->door.height);
 	data->door.addr = mlx_get_data_addr(data->door.img, &data->door.bpp, &data->door.size_line, &data->door.endian);
-	data->texture.img = mlx_xpm_file_to_image(data->mlx, "textures/wall.xpm", &data->texture.width, &data->texture.height);
+	data->texture.img = mlx_xpm_file_to_image(data->mlx, "textures/wall3.xpm", &data->texture.width, &data->texture.height);
 	data->texture.addr = mlx_get_data_addr(data->texture.img, &data->texture.bpp, &data->texture.size_line, &data->texture.endian);
-	data->celing_texture.img = mlx_xpm_file_to_image(data->mlx, "textures/celing.xpm", &data->door.width, &data->door.height);
-	data->celing_texture.addr = mlx_get_data_addr(data->celing_texture.img, &data->celing_texture.bpp, &data->celing_texture.size_line, &data->celing_texture.endian);
+	data->texture.img = mlx_xpm_file_to_image(data->mlx, "textures/wall3.xpm", &data->texture.width, &data->texture.height);
+	data->texture.addr = mlx_get_data_addr(data->texture.img, &data->texture.bpp, &data->texture.size_line, &data->texture.endian);
+	data->fire = mlx_xpm_file_to_image(data->mlx, "weapon/fire.xpm", &width, &hight);
+	int i = 0;
+	char *str;
+	while (i < 84)
+	{
+		printf("%d\n", i);
+		str  = ft_strjoin("weapon/", ft_strjoin(ft_itoa(i + 1), ".xpm"));
+		data->weapon[i] = mlx_xpm_file_to_image(data->mlx, str, &width, &hight);
+		i++;
+	}
+	data->weapon[i] = 0;
 }
 
 int	main(int ac, char **av)

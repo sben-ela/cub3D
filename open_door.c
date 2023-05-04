@@ -30,6 +30,7 @@ char	*ft_strdup(const char *source)
 	mem[i] = '\0';
 	return (mem);
 }
+
 void	open_door(t_data *data)
 {
 	int	x;

@@ -11,11 +11,9 @@ void draw_floor_and_celing(t_data *data)
     {
         j = 0;
         color = data->celing;
-		if (data->map[(int)data->player.y][(int)data->player.x] == '4')
-			color = GREY;
         while (j < HEIGHT)
         {
-            if (j > HEIGHT / 2)
+            if (j > HEIGHT / 2 - data->up_down)
                 color = data->floor;
             ft_put_pixel(&data->img, i, j, color);
             j++;
@@ -49,9 +47,11 @@ void	draw_walls(t_data *data, double len, int x, double wallx)
 	texture = &data->texture;
 	if (data->hitted == DOOR)
 		texture = &data->door;
+	if (data->typeoftexture == 0)
+		texture = &data->sprite;
 	skipped = 0;
-	start = HEIGHT / 2 - len / 2;
-	end = HEIGHT / 2 + len / 2;
+	start = HEIGHT / 2 - len / 2 - data->up_down;
+	end = HEIGHT / 2 + len / 2 - data->up_down;
 	if (start < 0)
 	{
 		skipped = -start;

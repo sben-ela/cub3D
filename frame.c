@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/04/30 11:38:51 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:36:26 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	draw_rays(t_data *data)
 		cam = ((2.0 * i - WIDTH) / WIDTH);
 		ray[0] = data->player.dir_x + cam * data->player.plane_x;
 		ray[1] = data->player.dir_y + cam * data->player.plane_y;
+
 		dist = dda(data, ray[0], ray[1], 0);
 		// draw_line(data, ray[0], ray[1], dist.distance);
 		draw_walls(data, HEIGHT / dist.distance, i, dist.wall_x);
@@ -185,6 +186,28 @@ int frame(t_data *data)
 	draw_rays(data);
     draw_minimap(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	static int i;
+	if (data->reload == 1)
+	{
+		mlx_put_image_to_window(data->mlx, data->win, data->weapon[i % 83], -80 + data->left_right, 280);
+		if (i % 83 == 0)
+			data->reload = -1;
+		i++;
+	}
+	else
+		mlx_put_image_to_window(data->mlx, data->win, data->weapon[0], -80 + data->left_right, 280);
+	if (data->flag == 1 && data->reload != 1)
+	{
+		pid_t pid = fork();
+		char *command[] = {"afplay", "weapon/fire.mp3", 0};
+		if (pid == 0)
+			execve("/usr/bin/afplay", command, 0);
+		//afplay weapon/fire.mp3
+		mlx_put_image_to_window(data->mlx, data->win, data->fire, 585 + data->left_right, 660);
+		mlx_put_image_to_window(data->mlx, data->win, data->fire, 585 + data->left_right, 650);
+	}
+	data->flag = 0;
     mlx_destroy_image(data->mlx, data->img.img);
     return (0);
 }
+

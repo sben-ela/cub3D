@@ -77,11 +77,28 @@ void    ft_destroy(t_data *data)
     mlx_destroy_window(data->mlx, data->win);
     exit (0);
 }
- 
+
+void weapondire(int keypress, t_data *data)
+{
+	if (keypress == UP && data->up_down - 100 > -6100)
+		data->up_down -= 100;
+	if (keypress == DOWN && data->up_down + 100 < 300)
+		data->up_down += 100;
+	if (keypress == LEFT && data->left_right - 100 > -600)
+		data->left_right -= 100;
+	if (keypress == RIGHT && data->left_right + 100 < 300)
+			data->left_right += 100;
+}
 int on_key_down(int keypress, t_data *data)
 {
+	data->keypress = keypress;
     if (keypress == ESC)
 		ft_destroy(data);
+	weapondire(keypress, data);
+	if (keypress == 3)
+		data->flag = 1;
+	if (keypress == 15)
+		data->reload = 1;
 	if (keypress == 49)
 		open_door(data);
 	if (keypress == 69)

@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/04/30 10:39:06 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/04 11:14:32 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,14 @@
 # define	BLUE	0x000000FF
 # define	YELLOW 	0x00FFFF00
 # define	GREY 	0x00808080
+# define	NONE	0x463f3a
 # define	DOOR	1
 # define	WALL	0
-#define		OPEN	1
+# define	OPEN	1
+# define	LEFT	43
+# define	RIGHT	47
+# define	UP		126
+# define	DOWN	125
 
 # include	<stdlib.h>
 # include	<unistd.h>
@@ -104,13 +109,16 @@ typedef struct data
 {
     void 	    *mlx;
     void	    *win;
-	void		*knife;
+	void		*fire;
     char	    **map;
 	t_hooks		hooks;
     t_player    player;
     t_img       img; 
     t_img       texture;
+	t_img       texture2;
+	t_img		sprite;
 	t_img		door;
+	int			typeoftexture;
 	t_img		celing_texture;
 	double		speed;
     int		    count;
@@ -118,7 +126,14 @@ typedef struct data
 	int			floor;
 	int			celing;
 	int			fd;
+	int			reload;
+	int			flag;
+	int			left_right;
+	int			up_down;
 	int			w;
+	int			keypress;
+	int			start;
+	void		*weapon[85];
 	t_door		sdoor;
 	int			hitted;
 }   t_data;
@@ -129,7 +144,9 @@ typedef struct dist
 	double 	wall_x;
 	int		direction;
 } t_dist;
-
+char		*ft_strjoin(char *s1, char *s2);
+char		*ft_itoa(int n);
+char		*ft_join(char *left_str, char *buff);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
