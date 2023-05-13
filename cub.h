@@ -6,17 +6,17 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/04 11:14:32 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/09 11:19:47 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-#define CUB_H
+# ifndef	CUB_H
+# define	CUB_H
 
 # define	HEIGHT 1000
 # define	WIDTH 1000
-# define	TRANS_SPEED 0.1
-# define	ROT_ANGLE 0.09
+# define	TRANS_SPEED 0.15
+# define	ROT_ANGLE 0.1
 # define	CELL_SIZE 10
 # define	PLAYER_SIZE 5
 # define	HOR 0
@@ -33,12 +33,20 @@
 # define	NONE	0x463f3a
 # define	DOOR	1
 # define	WALL	0
-# define	OPEN	1
 # define	LEFT	43
 # define	RIGHT	47
 # define	UP		126
 # define	DOWN	125
+# define	NORTH	1
+# define	SOUTH	2
+# define	EAST	3
+# define	WEST	4
+# define	FIRE	3
+# define	RELOAD	15
+# define	OPEN	49
 
+#include	<signal.h>
+#include	<pthread.h>
 # include	<stdlib.h>
 # include	<unistd.h>
 # include	<stdio.h>
@@ -111,15 +119,16 @@ typedef struct data
     void	    *win;
 	void		*fire;
     char	    **map;
+	void		*weapon[85];
 	t_hooks		hooks;
     t_player    player;
     t_img       img; 
-    t_img       texture;
-	t_img       texture2;
+    t_img       texture[4];
 	t_img		sprite;
 	t_img		door;
-	int			typeoftexture;
 	t_img		celing_texture;
+	int			side;
+	int			compass;
 	double		speed;
     int		    count;
     int         *position;
@@ -131,11 +140,16 @@ typedef struct data
 	int			left_right;
 	int			up_down;
 	int			w;
+	double		angle;
+	int			mouse_x;
+	double		mouse_y;
+	int			mouse;
 	int			keypress;
 	int			start;
-	void		*weapon[85];
 	t_door		sdoor;
 	int			hitted;
+	int			over;
+	pid_t		pid;
 }   t_data;
 
 typedef struct dist
@@ -144,6 +158,8 @@ typedef struct dist
 	double 	wall_x;
 	int		direction;
 } t_dist;
+
+void		ft_voice(char *voice,  pid_t *pid);
 char		*ft_strjoin(char *s1, char *s2);
 char		*ft_itoa(int n);
 char		*ft_join(char *left_str, char *buff);
@@ -152,7 +168,7 @@ void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
 void		draw_floor_and_celing(t_data *data);
 void		ft_put_pixel(t_img *img, int x, int y, int rgb);
-t_dist 		dda(t_data *data, double ray_x, double ray_y, int flag);
+t_dist 		dda(t_data *data, double ray_x, double ray_y);
 void		get_player_pos(t_player *player, char **map);
 int			frame(t_data *data);
 void		new_image(t_data *data);
@@ -162,5 +178,7 @@ int			ft_strlen(const char *s);
 char		*get_next_line(int fd);
 int			count_line(char *av);
 char		**get_map(int fd, int count);
-void		celing(t_data *data);
-#endif
+int			handle_mouse(int x, int y, t_data *data);
+int			mlx_mouse_move(void *win_ptr, int x, int y);
+
+# endif

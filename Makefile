@@ -1,15 +1,14 @@
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 NAME = cub3d.a
 PROG = cub3d
-SOURCES = cub.c frame.c getnextline.c cub_utils.c dda.c draw.c open_door.c ft_itoa.c ft_strjoin.c
+SOURCES = main.c utils/frame.c utils/getnextline.c utils/cub_utils.c utils/dda.c utils/draw.c  utils/ft_itoa.c utils/ft_strjoin.c utils/open_door.c
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: $(NAME) clean
 
 $(NAME): $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)
-	cc	$(CFLAGS)  $(OBJECTS) -lmlx -framework OpenGL -framework AppKit -o $(PROG)
-
+	cc	$(CFLAGS)  $(OBJECTS) -Lminilibx -lmlx -framework OpenGL -framework AppKit -o $(PROG)
 clean:
 	rm -f $(OBJECTS)
 
