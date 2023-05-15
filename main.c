@@ -39,7 +39,7 @@ void	init_textures(t_data *data)
 	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, &data->texture[0].bpp, &data->texture[0].size_line, &data->texture[0].endian);
 	data->texture[1].img = mlx_xpm_file_to_image(data->mlx, "textures/wall2.xpm", &data->texture[1].width, &data->texture[1].height);
 	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, &data->texture[1].bpp, &data->texture[1].size_line, &data->texture[1].endian);
-	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, "textures/wall.xpm", &data->texture[2].width, &data->texture[2].height);
+	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, "textures/sben-ela.xpm", &data->texture[2].width, &data->texture[2].height);
 	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, &data->texture[2].bpp, &data->texture[2].size_line, &data->texture[2].endian);
 	data->texture[3].img = mlx_xpm_file_to_image(data->mlx, "textures/wall3.xpm", &data->texture[3].width, &data->texture[3].height);
 	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, &data->texture[3].bpp, &data->texture[3].size_line, &data->texture[3].endian);
