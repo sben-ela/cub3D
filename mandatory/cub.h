@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ../cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/14 20:29:37 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/15 10:56:18 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@
 # include	<math.h>
 # include	"mlx.h"
 
-enum e_hook_type {
+enum
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -65,7 +66,7 @@ enum e_hook_type {
 	ON_DESTROY = 17
 };
 
-enum e_keys
+enum
 {
 	ESC = 53,
 	KEY_A = 0,
@@ -77,11 +78,11 @@ enum e_keys
 };
 
 typedef struct	s_img {
-	void	*img;		// Pointer to the beginning of the image data
-	char	*addr;		// Pointer to the beginning of the address data
-	int		bpp;		// The number of bits used to represent each pixel in the image
-	int		size_line;	// The number of bytes used to store one line of the image
-	int		endian;		// The endianness of the image data (0 for little-endian, 1 for big-endian)
+	void	*img;		//	Pointer to the beginning of the image data
+	char	*addr;		//	Pointer to the beginning of the address data
+	int		bpp;		//	The number of bits used to represent each pixel in the image
+	int		size_line;	//	The number of bytes used to store one line of the image
+	int		endian;		//	The endianness of the image data (0 for little-endian, 1 for big-endian)
 	int		width;
 	int		height;
 }   t_img;
@@ -115,41 +116,21 @@ typedef struct door
 
 typedef struct data
 {
-    void 	    *mlx;
-    void	    *win;
-	void		*fire;
-    char	    **map;
-	void		*weapon[85];
+    void		*mlx;
+    void		*win;
+    char		**map;
 	t_hooks		hooks;
-    t_player    player;
-    t_img       img; 
-    t_img       texture[4];
-	t_img		sprite;
-	t_img		door;
-	t_img		celing_texture;
+    t_player	player;
+    t_img   	img; 
+    t_img   	texture[4];
 	int			side;
 	int			compass;
-	double		speed;
-    int		    count;
-    int         *position;
+    int			count;
 	int			floor;
 	int			celing;
 	int			fd;
-	int			reload;
-	int			flag;
-	int			left_right;
-	int			up_down;
-	int			w;
 	double		angle;
-	int			mouse_x;
-	double		mouse_y;
-	int			mouse;
-	int			keypress;
 	int			start;
-	t_door		sdoor;
-	int			hitted;
-	int			over;
-	pid_t		pid;
 }   t_data;
 
 typedef struct dist
@@ -179,6 +160,8 @@ char		*get_next_line(int fd);
 int			count_line(char *av);
 char		**get_map(int fd, int count);
 int			handle_mouse(int x, int y, t_data *data);
-int			mlx_mouse_move(void *win_ptr, int x, int y);
+void		draw_rays(t_data *data);
+void		draw_line(t_data *data, double ray_x, double ray_y, double len);
+void		ft_destroy(t_data *data);
 
 # endif

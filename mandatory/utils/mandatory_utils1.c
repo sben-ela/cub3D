@@ -1,4 +1,4 @@
-#include "cub.h"
+#include "../cub.h"
 
 void get_player_pos(t_player *player, char **map)
 {
@@ -74,19 +74,6 @@ void	new_image(t_data *data)
 
 void    ft_destroy(t_data *data)
 {
-	kill(data->pid, SIGKILL);
     mlx_destroy_window(data->mlx, data->win);
     exit (0);
-}
-
-void	weapondire(int keypress, t_data *data)
-{
-	if (keypress == UP && data->up_down - 100 > -900)
-		data->up_down -= 100;
-	if (keypress == DOWN && data->up_down + 100 < 900)
-		data->up_down += 100;
-	if (keypress == LEFT && data->left_right - 100 > -600)
-		data->left_right -= 100;
-	if (keypress == RIGHT && data->left_right + 100 < 300)
-		data->left_right += 100;
 }
