@@ -1,7 +1,7 @@
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 NAME = cub3d.a
 PROG = cub3d
-SOURCES = main.c ../utils/getnextline.c utils/mandatory_utils1.c utils/frame.c utils/draw.c utils/dda.c  utils/mandatory_utils2.c
+SOURCES = main.c utils/getnextline.c utils/mandatory_utils1.c utils/frame.c utils/draw.c utils/dda.c  utils/mandatory_utils2.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME) clean

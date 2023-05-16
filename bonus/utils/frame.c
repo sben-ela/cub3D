@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/14 21:38:05 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:15:24 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ void    ft_putcube(t_data *data, int x, int y, int color)
 {
     int i;
     int j;
+	int size;
 
     i = 0;
-    while (i < CELL_SIZE - 1)
+	size = WIDTH  / 10 / data->count;
+    while (i < size - 1)
     {
         j = 0;
-        while (j < CELL_SIZE - 1)
+        while (j < size - 1)
         {
-            ft_put_pixel(&data->img, x * CELL_SIZE + j, y * CELL_SIZE + i, color);
+            ft_put_pixel(&data->img, x * size + j, y * size + i, color);
             j++;
         }
         i++;
@@ -95,18 +97,19 @@ void	ft_putplayer(t_data *data, double x, double y, int color)
 	int i;
 	int j;
 
-	i = -PLAYER_SIZE / 2;
-	while (i < PLAYER_SIZE / 2)
+	int size = size = WIDTH  / 10 / data->count;;
+	i = -size / 2;
+	while (i < size / 2)
 	{
-		j = -PLAYER_SIZE / 2;
-		while (j < PLAYER_SIZE / 2)
+		j = -size / 2;
+		while (j < size / 2)
 		{
-			ft_put_pixel(&data->img, x * CELL_SIZE + i, y * CELL_SIZE + j, color);
+			ft_put_pixel(&data->img, x * size + i, y * size + j, color);
 			j++;
 		}
 		i++;
 	}
-	draw_line(data, data->player.dir_x, data->player.dir_y, 2);
+	// draw_line(data, data->player.dir_x, data->player.dir_y, 2);
 }
 
 void    draw_minimap(t_data *data)

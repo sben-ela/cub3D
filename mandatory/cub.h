@@ -131,14 +131,14 @@ typedef struct data
 	int			fd;
 	double		angle;
 	int			start;
-}   t_data;
+}	t_data;
 
 typedef struct dist
 {
 	double	distance;
 	double 	wall_x;
 	int		direction;
-} t_dist;
+}	t_dist;
 
 void		ft_voice(char *voice,  pid_t *pid);
 char		*ft_strjoin(char *s1, char *s2);

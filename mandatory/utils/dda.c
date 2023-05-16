@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:54:56 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/15 11:48:53 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/15 21:43:35 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,6 @@ t_dist dda(t_data *data, double ray_x, double ray_y)
 		}
 		if (data->map[pos_y][pos_x] == '1' || data->map[pos_y][pos_x] == 'D')
 		{
-			distance = delta_y - s_delta_y;
-			dist.wall_x = data->player.x + (distance * ray_x);
-			dist.wall_x -= (int)dist.wall_x;
-			data->compass = NORTH;
-				if (ray_y > 0)
-					data->compass = SOUTH;
 			if (data->side == VER)
 			{
 				distance = delta_x - s_delta_x;
@@ -73,7 +67,14 @@ t_dist dda(t_data *data, double ray_x, double ray_y)
 				data->compass = EAST;
 				if (ray_x < 0)
 					data->compass = WEST;
+				break ;
 			}
+			distance = delta_y - s_delta_y;
+			dist.wall_x = data->player.x + (distance * ray_x);
+			dist.wall_x -= (int)dist.wall_x;
+			data->compass = NORTH;
+			if (ray_y > 0)
+				data->compass = SOUTH;
 			break ;
 		}
 	}

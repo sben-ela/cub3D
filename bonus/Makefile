@@ -8,7 +8,7 @@ all: $(NAME) clean
 
 $(NAME): $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)
-	cc	$(CFLAGS)  $(OBJECTS) -Lminilibx -lmlx -framework OpenGL -framework AppKit -o $(PROG)
+	cc	$(CFLAGS)  $(OBJECTS) -L../minilibx -lmlx -framework OpenGL -framework AppKit -o $(PROG)
 clean:
 	rm -f $(OBJECTS)
 

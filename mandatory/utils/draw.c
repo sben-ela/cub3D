@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/15 19:56:12 by sben-ela          #+#    #+#             */
+/*   Updated: 2023/05/16 08:09:35 by sben-ela         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
 void draw_floor_and_celing(t_data *data)
@@ -41,7 +53,7 @@ void	draw_line(t_data *data, double ray_x, double ray_y, double len)
 
 void	draw_rays(t_data *data)
 {
-	int 	i;
+	int		i;
 	double	cam;
 	double	ray[2];
 	t_dist	dist;
@@ -57,7 +69,10 @@ void	draw_rays(t_data *data)
 		i++;
 	}
 }
-
+// cam = -1 ==> ray[0] = -0.65 & ray[1] = -1
+// cam =  1 ==> ray[0] =  0.65 & ray[1] = -1
+// com =  0 ==> ray[0] =  0	   & ray[1] = -1
+ 
 void	draw_walls(t_data *data, double len, int x, double wallx)
 {
 	double	start;
