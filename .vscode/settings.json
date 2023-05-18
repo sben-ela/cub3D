@@ -13,6 +13,7 @@
         "vector": "c",
         "stdlib.h": "c",
         "cub.h": "c",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "__config": "cpp"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:12:20 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 10:12:23 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:46:06 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,4 @@ void	open_door(t_data *data)
 		return ;
 	data->map[y][x] = 79 - 11 * (data->map[y][x] == 'O');
 	ft_voice("textures/open_door.mp3", &pid);
-}
-
-int	count_line_map(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-			j++;
-		i++;
-	}
-	return (i);
 }

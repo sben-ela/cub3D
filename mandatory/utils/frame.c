@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/16 07:57:33 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:55:05 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	moves(t_data *data)
 int frame(t_data *data)
 {
 	new_image(data);
-	draw_floor_and_celing(data);
+	draw_floor_and_ceiling(data);
 	moves(data);
 	draw_rays(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

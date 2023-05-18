@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/16 10:59:32 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:02:03 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 void	init_textures(t_data *data)
 {
-	data->texture[0].img = mlx_xpm_file_to_image(data->mlx, "../bonus/textures/wall5.xpm", &data->texture[0].width, &data->texture[0].height);
-	data->texture[0].addr = mlx_get_data_addr(data->texture[0].img, &data->texture[0].bpp, &data->texture[0].size_line, &data->texture[0].endian);
-	data->texture[1].img = mlx_xpm_file_to_image(data->mlx, "../bonus/textures/wall2.xpm", &data->texture[1].width, &data->texture[1].height);
-	data->texture[1].addr = mlx_get_data_addr(data->texture[1].img, &data->texture[1].bpp, &data->texture[1].size_line, &data->texture[1].endian);
-	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, "../bonus/textures/wall.xpm", &data->texture[2].width, &data->texture[2].height);
-	data->texture[2].addr = mlx_get_data_addr(data->texture[2].img, &data->texture[2].bpp, &data->texture[2].size_line, &data->texture[2].endian);
-	data->texture[3].img = mlx_xpm_file_to_image(data->mlx, "../bonus/textures/wall3.xpm", &data->texture[3].width, &data->texture[3].height);
-	data->texture[3].addr = mlx_get_data_addr(data->texture[3].img, &data->texture[3].bpp, &data->texture[3].size_line, &data->texture[3].endian);
+	char *phats[4] = {"../bonus/textures/wall5.xpm", "../bonus/textures/wall2.xpm", "../bonus/textures/wall.xpm", "../bonus/textures/wall3.xpm"};
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		data->texture[i].img = mlx_xpm_file_to_image(data->mlx, phats[i], &data->texture[i].width, &data->texture[i].height);
+		if (!data->texture[i].img)
+			exit (EXIT_FAILURE);
+		data->texture[i].addr = mlx_get_data_addr(data->texture[i].img, &data->texture[i].bpp, &data->texture[i].size_line, &data->texture[i].endian);
+		if (!data->texture[i].addr)
+			exit (EXIT_FAILURE);
+		i++;
+	}
 }
 
 int	ft_get_pixel(t_img *img, int x, int y)
@@ -39,7 +45,7 @@ int	ft_get_pixel(t_img *img, int x, int y)
 
 void	init_data(t_data *data, char *map)
 {
-	data->celing = CELING;
+	data->ceiling = CEILING;
 	data->floor = FLOOR;
 	data->fd = open(map, O_RDONLY);
 	if (data->fd < 0)
@@ -51,7 +57,7 @@ void	init_data(t_data *data, char *map)
 	init_textures(data);
 	get_player_pos(&data->player, data->map);
 	data->player.dir_x = 0;
-	data->player.dir_y = -1;
+	data->player.dir_y = -1; 
 	data->player.plane_x = 0.65;
 	data->player.plane_y = 0;
 	data->hooks.horizontal = -1;

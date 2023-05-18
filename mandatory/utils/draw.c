@@ -6,13 +6,13 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:12 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/16 08:09:35 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:28:11 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void draw_floor_and_celing(t_data *data)
+void draw_floor_and_ceiling(t_data *data)
 {
     int i;
     int j;
@@ -22,7 +22,7 @@ void draw_floor_and_celing(t_data *data)
     while (i < WIDTH)
     {
         j = 0;
-        color = data->celing;
+        color = data->ceiling;
         while (j < HEIGHT)
         {
             if (j > HEIGHT / 2)
@@ -33,6 +33,7 @@ void draw_floor_and_celing(t_data *data)
         i++;
     }    
 }
+
 void	draw_line(t_data *data, double ray_x, double ray_y, double len)
 {
 	int		i;
@@ -53,26 +54,24 @@ void	draw_line(t_data *data, double ray_x, double ray_y, double len)
 
 void	draw_rays(t_data *data)
 {
-	int		i;
-	double	cam;
-	double	ray[2];
+	int 	i;
+	double	cam_x;
+	double	ray_x;
+	double	ray_y;
 	t_dist	dist;
 
 	i = 0;
 	while (i < WIDTH)
 	{
-		cam = ((2.0 * i - WIDTH) / WIDTH);
-		ray[0] = data->player.dir_x + cam * data->player.plane_x;
-		ray[1] = data->player.dir_y + cam * data->player.plane_y;
-		dist = dda(data, ray[0], ray[1]);
+		cam_x = ((2.0 * i - WIDTH) / WIDTH);
+		ray_x = data->player.dir_x + cam_x * data->player.plane_x;
+		ray_y = data->player.dir_y + cam_x * data->player.plane_y;
+		dist = dda(data, ray_x, ray_y);
 		draw_walls(data, HEIGHT / dist.distance, i, dist.wall_x);
 		i++;
 	}
 }
-// cam = -1 ==> ray[0] = -0.65 & ray[1] = -1
-// cam =  1 ==> ray[0] =  0.65 & ray[1] = -1
-// com =  0 ==> ray[0] =  0	   & ray[1] = -1
- 
+
 void	draw_walls(t_data *data, double len, int x, double wallx)
 {
 	double	start;

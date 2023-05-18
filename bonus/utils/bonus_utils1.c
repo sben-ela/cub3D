@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:14:05 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 09:35:52 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:18:46 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    ft_destroy(t_data *data)
 {
-	// kill(data->pid, SIGKILL);
+	kill(data->pid, SIGKILL);
     mlx_destroy_window(data->mlx, data->win);
     exit (0);
 }
@@ -69,7 +69,9 @@ int handle_mouse(int x, int y, t_data *data)
 {
 	double	dx;
 	int		pos_x;
+	int		pos_y;
 
+	(void)y;
 	if (x < 0 || x >= WIDTH)
 	{
 		pos_x = 0;
@@ -79,10 +81,19 @@ int handle_mouse(int x, int y, t_data *data)
 		data->mouse_x = pos_x;
 		x = pos_x;
 	}
+	if (y >= HEIGHT || y < 0)
+	{
+		pos_y = 0;
+		if (y < 0)
+			pos_y = HEIGHT - 1;
+		mlx_mouse_move(data->win, pos_x, pos_y);
+		data->mouse_y = pos_y;
+		y = pos_y;
+	}
 	if (y - data->mouse_y > 0)
-		data->up_down -= 2;
+		data->up_down -= 4;
 	else
-		data->up_down += 2;
+		data->up_down += 4;
 	data->mouse_y = y;
 	dx = x - data->mouse_x;
 	data->angle = (-dx * M_PI) / WIDTH;

@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 09:55:51 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:18:52 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define	HOR 0
 # define	VER 1
 # define	FLOOR	0xf8c291
-# define	CELING	0x70a1ff
+# define	CEILING	0x70a1ff
 # define 	WHITE	0x00FFFFFF
 # define 	BLACK	0x00000000
 # define	RED		0x00FF0000 
@@ -103,16 +103,6 @@ typedef	struct s_hooks
 	int	rotation;
 }	t_hooks;
 
-typedef struct door
-{
-	double	distance;
-	int		x;
-	int		y;
-	int		flag;
-	double	dir_x;
-	double	dir_y;
-} t_door;
-
 typedef struct data
 {
 	t_hooks		hooks;
@@ -121,8 +111,7 @@ typedef struct data
     t_img       texture[4];
 	t_img		sprite;
 	t_img		door;
-	t_img		celing_texture;
-	t_door		sdoor;
+	t_img		CEILING_texture;
     void 	    *mlx;
     void	    *win;
 	void		*fire;
@@ -133,7 +122,7 @@ typedef struct data
     int		    count;
     int         *position;
 	int			floor;
-	int			celing;
+	int			ceiling;
 	int			fd;
 	int			reload;
 	int			flag;
@@ -177,7 +166,7 @@ void		ft_voice(char *voice,  pid_t *pid);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
-void		draw_floor_and_celing(t_data *data);
+void		draw_floor_and_ceiling(t_data *data);
 void		ft_put_pixel(t_img *img, int x, int y, int rgb);
 t_dist 		dda(t_data *data, double ray_x, double ray_y);
 void		get_player_pos(t_player *player, char **map);

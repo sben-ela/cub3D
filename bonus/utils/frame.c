@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 09:36:56 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 21:11:34 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,9 @@ int frame(t_data *data)
 {
 	static int i;
 
-	data->sdoor.distance = -1;
-	data->sdoor.flag = 0;
     new_image(data);
 	moves(data);
-	draw_floor_and_celing(data);
+	draw_floor_and_ceiling(data);
     draw_minimap(data);
 	draw_rays(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);

@@ -22,7 +22,7 @@
 # define	HOR 0
 # define	VER 1
 # define	FLOOR	0xf8c291
-# define	CELING	0x70a1ff
+# define	CEILING	0x70a1ff
 # define 	WHITE	0x00FFFFFF
 # define 	BLACK	0x00000000
 # define	RED		0x00FF0000 
@@ -45,8 +45,6 @@
 # define	RELOAD	15
 # define	OPEN	49
 
-#include	<signal.h>
-#include	<pthread.h>
 # include	<stdlib.h>
 # include	<unistd.h>
 # include	<stdio.h>
@@ -123,14 +121,23 @@ typedef struct data
     t_player	player;
     t_img   	img; 
     t_img   	texture[4];
-	int			side;
 	int			compass;
     int			count;
 	int			floor;
-	int			celing;
+	int			ceiling;
 	int			fd;
 	double		angle;
 	int			start;
+	//dda
+	int			side;
+	int			pos_x;
+	int			pos_y;
+	int			step_x;
+	int			step_y;
+	double		s_delta_x;
+	double		s_delta_y;
+	double		delta_x;
+	double		delta_y;
 }	t_data;
 
 typedef struct dist
@@ -141,13 +148,11 @@ typedef struct dist
 }	t_dist;
 
 void		ft_voice(char *voice,  pid_t *pid);
-char		*ft_strjoin(char *s1, char *s2);
-char		*ft_itoa(int n);
 char		*ft_join(char *left_str, char *buff);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
-void		draw_floor_and_celing(t_data *data);
+void		draw_floor_and_ceiling(t_data *data);
 void		ft_put_pixel(t_img *img, int x, int y, int rgb);
 t_dist 		dda(t_data *data, double ray_x, double ray_y);
 void		get_player_pos(t_player *player, char **map);

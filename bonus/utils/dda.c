@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:54:56 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/17 21:36:27 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 10:53:28 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ t_dist dda(t_data *data, double ray_x, double ray_y)
 			data->compass = NORTH;
 			if (ray_y > 0)
 				data->compass = SOUTH;
-			if (data->map[data->pos_y][data->pos_x] == 'D')
-			{
-				data->sdoor.x = data->pos_x;
-				data->sdoor.y = data->pos_y;
-				data->sdoor.distance = distance;
-			}
 			break ;
 		}
 	}
