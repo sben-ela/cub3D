@@ -15,7 +15,7 @@ void	init_weapon(t_data *data)
 		, "weapon/56.xpm", "weapon/57.xpm", "weapon/58.xpm", "weapon/59.xpm" ,  "weapon/60.xpm", "weapon/61.xpm", "weapon/62.xpm"
 		, "weapon/63.xpm", "weapon/64.xpm", "weapon/66.xpm", "weapon/66.xpm", "weapon/67.xpm", "weapon/68.xpm", "weapon/69.xpm"
 		, "weapon/70.xpm", "weapon/71.xpm", "weapon/72.xpm", "weapon/73.xpm", "weapon/74.xpm", "weapon/75.xpm", "weapon/76.xpm"
-		,"weapon/77.xpm", "weapon/78.xpm", "weapon/79.xpm", "weapon/80.xpm", "weapon/81.xpm", "weapon/82.xpm", "weapon/83.xpm"
+		, "weapon/77.xpm", "weapon/78.xpm", "weapon/79.xpm", "weapon/80.xpm", "weapon/81.xpm", "weapon/82.xpm", "weapon/83.xpm"
 		, "weapon/84.xpm"};
 
 	i = 0;
@@ -87,7 +87,7 @@ int	main(int ac, char **av)
 	mlx_hook(data->win, ON_KEYUP, 0, on_key_up, data);
 	mlx_hook(data->win, ON_MOUSEMOVE, 0, handle_mouse, data);
 	mlx_loop_hook(data->mlx, frame, data);
-	ft_voice("textures/player.mp3", &data->pid);
+	// ft_voice("textures/player.mp3", &data->pid);
 	mlx_loop(data->mlx);
 	return (0);
 }

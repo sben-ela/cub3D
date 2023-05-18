@@ -1,37 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/18 10:10:40 by sben-ela          #+#    #+#             */
+/*   Updated: 2023/05/18 10:10:41 by sben-ela         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub.h"
 
-void draw_floor_and_celing(t_data *data)
+void	draw_line(t_data *data, double ray_x, double ray_y, double len)
 {
-    int i;
-    int j;
-    int color;
+	int		i;
+	double	x_pixel;
+	double	y_pixel;
 
-    i = 0;
-    while (i < WIDTH)
-    {
-        j = 0;
-        color = data->celing;
-        while (j < HEIGHT)
-        {
-            if (j > HEIGHT / 2 - data->up_down)
-                color = data->floor;
-            ft_put_pixel(&data->img, i, j, color);
-            j++;
-        }
-        i++;
-    }    
+	i = 0;
+	x_pixel = data->player.x * CELL_SIZE;
+	y_pixel = data->player.y * CELL_SIZE;
+	while (i < CELL_SIZE * len)
+	{
+		ft_put_pixel(&data->img, x_pixel, y_pixel, BLACK);
+		x_pixel += ray_x;
+		y_pixel += ray_y;
+		i++;
+	}
 }
 
-int	ft_get_pixel(t_img *img, int x, int y)
+void	draw_rays(t_data *data)
 {
-	int	offset;
-	int	*dst;
+	int 	i;
+	double	cam;
+	double	ray[2];
+	t_dist	dist;
 
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return 0;
-	offset = x * img->bpp / 8 + img->size_line * y;
-	dst = (int *)(img->addr + offset);
-	return (*dst);
+	i = 0;
+	while (i < WIDTH)
+	{
+		cam = ((2.0 * i - WIDTH) / WIDTH);
+		ray[0] = data->player.dir_x + cam * data->player.plane_x;
+		ray[1] = data->player.dir_y + cam * data->player.plane_y;
+		dist = dda(data, ray[0], ray[1]);
+		draw_walls(data, HEIGHT / dist.distance, i, dist.wall_x);
+		draw_line(data, ray[0], ray[1], dist.distance);
+		i++;
+	}
 }
 
 void	draw_walls(t_data *data, double len, int x, double wallx)
@@ -65,4 +81,52 @@ void	draw_walls(t_data *data, double len, int x, double wallx)
 		ft_put_pixel(&data->img, x, start + i, ft_get_pixel(texture, x_prime, y_prime));
         i++;
 	}
+}
+
+void draw_floor_and_celing(t_data *data)
+{
+    int i;
+    int j;
+    int color;
+
+    i = 0;
+    while (i < WIDTH)
+    {
+        j = 0;
+        color = data->celing;
+        while (j < HEIGHT)
+        {
+            if (j > HEIGHT / 2 - data->up_down)
+                color = data->floor;
+            ft_put_pixel(&data->img, i, j, color);
+            j++;
+        }
+        i++;
+    }    
+}
+
+void    draw_minimap(t_data *data)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while(data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == '1')
+				ft_putcube(data, x, y, BLACK);
+			else if (data->map[y][x] == 'D')
+				ft_putcube(data, x, y, RED);
+			else if (data->map[y][x] == 'O')
+				ft_putcube(data, x, y, GREEN);
+			else
+				ft_putcube(data, x, y, YELLOW);
+			x++;
+		}
+		y++;
+	}
+	ft_putplayer(data, data->player.x, data->player.y, RED);
 }

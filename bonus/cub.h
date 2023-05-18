@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/09 11:19:47 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:55:51 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,6 @@ typedef struct door
 
 typedef struct data
 {
-    void 	    *mlx;
-    void	    *win;
-	void		*fire;
-    char	    **map;
-	void		*weapon[85];
 	t_hooks		hooks;
     t_player    player;
     t_img       img; 
@@ -127,7 +122,12 @@ typedef struct data
 	t_img		sprite;
 	t_img		door;
 	t_img		celing_texture;
-	int			side;
+	t_door		sdoor;
+    void 	    *mlx;
+    void	    *win;
+	void		*fire;
+    char	    **map;
+	void		*weapon[85];
 	int			compass;
 	double		speed;
     int		    count;
@@ -146,10 +146,19 @@ typedef struct data
 	int			mouse;
 	int			keypress;
 	int			start;
-	t_door		sdoor;
 	int			hitted;
 	int			over;
-	pid_t		pid;
+	int			pid;
+	//	dda
+	int			side;
+	int			pos_x;
+	int			pos_y;
+	int			step_x;
+	int			step_y;
+	double		s_delta_x;
+	double		s_delta_y;
+	double		delta_x;
+	double		delta_y;
 }   t_data;
 
 typedef struct dist
@@ -159,10 +168,12 @@ typedef struct dist
 	int		direction;
 } t_dist;
 
+void		draw_line(t_data *data, double ray_x, double ray_y, double len);
+void		ft_putplayer(t_data *data, double x, double y, int color);
+void    	ft_putcube(t_data *data, int x, int y, int color);
+void		draw_rays(t_data *data);
+void    	draw_minimap(t_data *data);
 void		ft_voice(char *voice,  pid_t *pid);
-char		*ft_strjoin(char *s1, char *s2);
-char		*ft_itoa(int n);
-char		*ft_join(char *left_str, char *buff);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
