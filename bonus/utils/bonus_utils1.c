@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:14:05 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 21:18:46 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:07:52 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,13 @@ int handle_mouse(int x, int y, t_data *data)
 	int		pos_x;
 	int		pos_y;
 
-	(void)y;
 	if (x < 0 || x >= WIDTH)
 	{
 		pos_x = 0;
 		if (x < 0)
 			pos_x = WIDTH - 1;
 		mlx_mouse_move(data->win, pos_x, y);
-		data->mouse_x = pos_x;
+		data->last_x = pos_x;
 		x = pos_x;
 	}
 	if (y >= HEIGHT || y < 0)
@@ -87,16 +86,16 @@ int handle_mouse(int x, int y, t_data *data)
 		if (y < 0)
 			pos_y = HEIGHT - 1;
 		mlx_mouse_move(data->win, pos_x, pos_y);
-		data->mouse_y = pos_y;
+		data->last_y = pos_y;
 		y = pos_y;
 	}
-	if (y - data->mouse_y > 0)
+	if (y - data->last_y > 0)
 		data->up_down -= 4;
 	else
 		data->up_down += 4;
-	data->mouse_y = y;
-	dx = x - data->mouse_x;
+	data->last_y = y;
+	dx = x - data->last_x;
 	data->angle = (-dx * M_PI) / WIDTH;
-	data->mouse_x = x;
+	data->last_x = x;
 	return (0);
 }

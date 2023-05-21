@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:17 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/16 20:32:03 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:41:36 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char	**get_map(int fd, int count)
 void	new_image(t_data *data)
 {
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img.img)
+		exit(EXIT_FAILURE);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
 	&data->img.size_line, &data->img.endian);
 }

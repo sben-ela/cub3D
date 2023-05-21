@@ -72,13 +72,13 @@ void    init_data(t_data *data, char *map)
 	data->hooks.horizontal = -1;
 	data->hooks.vertical = -1;
 	data->hooks.rotation = -1;
-	data->mouse_y = HEIGHT / 2;
-	data->mouse_x = WIDTH / 2;
+	data->last_x = WIDTH / 2;
+	data->last_y = HEIGHT / 2;
 }
 
 int	main(int ac, char **av)
 {
-	t_data 		*data;
+	t_data	*data;
 
 	if (ac != 2)
 	    return (0);

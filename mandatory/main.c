@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 20:02:03 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/20 14:32:22 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	ft_get_pixel(t_img *img, int x, int y)
 
 void	init_data(t_data *data, char *map)
 {
-	data->ceiling = CEILING;
-	data->floor = FLOOR;
+	data->ceiling = NONE;
+	data->floor = GREY;
 	data->fd = open(map, O_RDONLY);
 	if (data->fd < 0)
 		printf("bad file :(\n"), exit (1);
@@ -75,7 +75,8 @@ int	main(int ac, char **av)
 	init_data(data, av[1]);
 	mlx_hook(data->win, ON_KEYDOWN, 0, on_key_down, data);
 	mlx_hook(data->win, ON_KEYUP, 0, on_key_up, data);
-	mlx_loop_hook(data->mlx, frame, data);
+	if (mlx_loop_hook(data->mlx, frame, data) == -1)
+		return (1);
 	mlx_loop(data->mlx);
 	return (0);
 }

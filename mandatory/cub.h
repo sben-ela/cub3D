@@ -25,7 +25,7 @@
 # define	CEILING	0x70a1ff
 # define 	WHITE	0x00FFFFFF
 # define 	BLACK	0x00000000
-# define	RED		0x00FF0000 
+# define	RED		0x00FF0000
 # define	GREEN	0x0000FF00
 # define	BLUE	0x000000FF
 # define	YELLOW 	0x00FFFF00
@@ -147,10 +147,8 @@ typedef struct dist
 	int		direction;
 }	t_dist;
 
-void		ft_voice(char *voice,  pid_t *pid);
 char		*ft_join(char *left_str, char *buff);
 int			ft_get_pixel(t_img *img, int x, int y);
-void		open_door(t_data *data);
 void		draw_walls(t_data *data, double len, int x, double wallx);
 void		draw_floor_and_ceiling(t_data *data);
 void		ft_put_pixel(t_img *img, int x, int y, int rgb);
@@ -164,7 +162,6 @@ int			ft_strlen(const char *s);
 char		*get_next_line(int fd);
 int			count_line(char *av);
 char		**get_map(int fd, int count);
-int			handle_mouse(int x, int y, t_data *data);
 void		draw_rays(t_data *data);
 void		draw_line(t_data *data, double ray_x, double ray_y, double len);
 void		ft_destroy(t_data *data);

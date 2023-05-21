@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 21:18:52 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:07:21 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ typedef struct data
 	int			up_down;
 	int			w;
 	double		angle;
-	int			mouse_x;
-	double		mouse_y;
+	int			last_x;
+	double		last_y;
 	int			mouse;
 	int			keypress;
 	int			start;
