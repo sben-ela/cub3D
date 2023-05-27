@@ -7,7 +7,7 @@ utils/ft_split.c	utils/ft_atoi.c	utils/mandatory_utils3.c \
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	ar rc $(NAME) $(OBJECTS)

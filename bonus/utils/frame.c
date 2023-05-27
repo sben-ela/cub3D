@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 16:05:49 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/26 22:14:26 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:14:17 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int frame(t_data *data)
     new_image(data);
 	moves(data);
 	draw_floor_and_ceiling(data);
-    draw_minimap(data);
 	draw_rays(data);
+    draw_minimap(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	if (data->reload == 1)
 	{
