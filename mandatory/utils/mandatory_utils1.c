@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:17 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/19 14:41:36 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:33:32 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void get_player_pos(t_player *player, char **map)
 		line = map[i];
 		while(line[j])
 		{
-			if (line[j] == 'N')
+			if (line[j] == 'N' || line[j] == 'W' || line[j] == 'S' || line[j] == 'E')
 			{
 				player->x = j + 0.5;
 				player->y = i + 0.5;

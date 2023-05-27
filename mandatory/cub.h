@@ -93,6 +93,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	int		direction;
 }   t_player;
 
 typedef	struct s_hooks
@@ -138,6 +139,8 @@ typedef struct data
 	double		s_delta_y;
 	double		delta_x;
 	double		delta_y;
+	int			direction;
+	char		**paths;
 }	t_data;
 
 typedef struct dist
@@ -147,6 +150,8 @@ typedef struct dist
 	int		direction;
 }	t_dist;
 
+void		ft_error(char *error);
+void		rotate(double *x_prime, double *y_prime, double angle);
 char		*ft_join(char *left_str, char *buff);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		draw_walls(t_data *data, double len, int x, double wallx);
@@ -165,5 +170,16 @@ char		**get_map(int fd, int count);
 void		draw_rays(t_data *data);
 void		draw_line(t_data *data, double ray_x, double ray_y, double len);
 void		ft_destroy(t_data *data);
+
+
+/*****************************/
+void 		check_args(int ac, char    *av[]);
+void 		check_file(char  **map, t_data *data);
+char		**ft_split(char const *s, char c);
+int			ft_atoi(const char	*str);
+// void set_data(t_data    *data);
+int			ft_strncmp(const char	*str1, const char	*str2, size_t	n);
+int    		get_index_(char  *s, char    **map);
+char		*ft_strtrim(char const	*s1, char const	*set);
 
 # endif

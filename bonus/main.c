@@ -32,15 +32,18 @@ void	init_weapon(t_data *data)
 void	init_textures(t_data *data)
 {
 	int hight, width;
-	char *paths[4] = {"textures/wall5.xpm", "textures/wall2.xpm", "textures/wall.xpm", "textures/wall3.xpm"};
 	data->door.img = mlx_xpm_file_to_image(data->mlx, "textures/door_1.xpm", &data->door.width, &data->door.height);
 	data->door.addr = mlx_get_data_addr(data->door.img, &data->door.bpp, &data->door.size_line, &data->door.endian);
 	int i = 0;
 	while (i < 4)
 	{
-		data->texture[i].img = mlx_xpm_file_to_image(data->mlx, paths[i], &data->texture[i].width, &data->texture[i].height);
+		data->texture[i].img = mlx_xpm_file_to_image(data->mlx, data->paths[i], &data->texture[i].width, &data->texture[i].height);
 		if (!data->texture[i].img)
+		{
+			printf("%s\n", data->paths[i]);
+			printf("invalid texture\n");
 			exit (EXIT_FAILURE);
+		}
 		data->texture[i].addr = mlx_get_data_addr(data->texture[i].img, &data->texture[i].bpp, &data->texture[i].size_line, &data->texture[i].endian);
 		if (!data->texture[i].addr)
 			exit (EXIT_FAILURE);
@@ -59,6 +62,7 @@ void    init_data(t_data *data, char *map)
 		printf("bad file disncriptor :)\n"), exit (1);
 	data->count = count_line(map);
 	data->map = get_map(data->fd, data->count);
+	check_file(data->map, data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "CUB3D");
 	init_textures(data);
@@ -76,6 +80,39 @@ void    init_data(t_data *data, char *map)
 	data->last_y = HEIGHT / 2;
 }
 
+void	get_direction(t_data *data)
+{
+	char	*dierection = "NSEW";
+	int 	i;
+
+	i = 0;
+	while (dierection[i])
+	{
+		if (data->map[(int)data->player.y][(int)data->player.x] == dierection[i])
+		{
+			data->player.direction = i + 1;
+			return ;
+		}
+		i++;
+	}
+}
+
+void	fix_direction(t_data *data)
+{
+	double angle;
+	get_direction(data);
+	
+	angle = 0;
+	if (data->player.direction == EAST)
+		angle = -M_PI / 2;
+	else if (data->player.direction == WEST)
+		angle = M_PI / 2;
+	else if (data->player.direction == SOUTH)
+		angle = M_PI;
+	rotate(&data->player.dir_x, &data->player.dir_y, angle);
+	rotate(&data->player.plane_x, &data->player.plane_y, angle);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -84,6 +121,7 @@ int	main(int ac, char **av)
 	    return (0);
 	data = malloc(sizeof(t_data));
 	init_data(data, av[1]);
+	fix_direction(data);
 	mlx_hook(data->win, ON_KEYDOWN, 0, on_key_down, data);
 	mlx_hook(data->win, ON_KEYUP, 0, on_key_up, data);
 	mlx_hook(data->win, ON_MOUSEMOVE, 0, handle_mouse, data);
