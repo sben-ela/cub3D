@@ -1,14 +1,15 @@
-F 0,100,0
-C 0,0,0
+NO                  ../bonus/textures/wall.xpm
+EA                  ../bonus/textures/wall2.xpm
+WE                  ../bonus/textures/wall3.xpm
+SO                  ../bonus/textures/wall5.xpm
 
-NO   ../bonus/textures/wall.xpm    
-EA   ../bonus/textures/wall2.xpm    
-WE   ../bonus/textures/wall3.xpm    
-SO   ../bonus/textures/wall5.xpm    
+F       255,255,255
+C       255,25,255
 
-111111111111
-10000N111111111
-111111111111
+1111
+1111
 11111
-10001
-11111
+1N01
+ 111
+
+1111

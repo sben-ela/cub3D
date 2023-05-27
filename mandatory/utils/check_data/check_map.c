@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nbarakat <nbarakat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 14:24:13 by nbarakat          #+#    #+#             */
-/*   Updated: 2023/05/26 20:56:02 by nbarakat         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:06:20 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -490,7 +490,7 @@ void check_corners(char **map, int index, t_data *data)
 
     size = getmapsize(map, index);
     largest =  get_largest(map, index);
-    copy = malloc(size * sizeof(char    *));
+    copy = malloc(size * sizeof(char *));
     copy_init(copy, map, index, largest);
     corners(copy);
     set_paths(data, map);

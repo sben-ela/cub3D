@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:20 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/15 19:56:21 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:12:59 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_putplayer(t_data *data, double x, double y, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -PLAYER_SIZE / 2;
 	while (i < PLAYER_SIZE / 2)
@@ -23,7 +23,8 @@ void	ft_putplayer(t_data *data, double x, double y, int color)
 		j = -PLAYER_SIZE / 2;
 		while (j < PLAYER_SIZE / 2)
 		{
-			ft_put_pixel(&data->img, x * CELL_SIZE + i, y * CELL_SIZE + j, color);
+			ft_put_pixel(&data->img, x * CELL_SIZE + i,
+				y * CELL_SIZE + j, color);
 			j++;
 		}
 		i++;
@@ -40,28 +41,29 @@ void	ft_put_pixel(t_img *img, int x, int y, int rgb)
 		return ;
 	offset = x * img->bpp / 8 + img->size_line * y;
 	dst = (int *)(img->addr + offset);
-	*dst = rgb; 
+	*dst = rgb;
 }
 
-void    ft_putcube(t_data *data, int x, int y, int color)
+void	ft_putcube(t_data *data, int x, int y, int color)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;	
 
-    i = 0;
-    while (i < CELL_SIZE - 1)
-    {
-        j = 0;
-        while (j < CELL_SIZE - 1)
-        {
-            ft_put_pixel(&data->img, x * CELL_SIZE + j, y * CELL_SIZE + i, color);
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < CELL_SIZE - 1)
+	{
+		j = 0;
+		while (j < CELL_SIZE - 1)
+		{
+			ft_put_pixel(&data->img, x * CELL_SIZE + j,
+				y * CELL_SIZE + i, color);
+			j++;
+		}
+		i++;
+	}
 }
 
-int on_key_down(int keypress, t_data *data)
+int	on_key_down(int keypress, t_data *data)
 {
 	if (keypress == ESC)
 		ft_destroy(data);
@@ -74,13 +76,13 @@ int on_key_down(int keypress, t_data *data)
 	return (0);
 }
 
-int on_key_up(int keypress, t_data *data)
+int	on_key_up(int keypress, t_data *data)
 {
-    if (keypress == KEY_W || keypress == KEY_S)
-        data->hooks.vertical = -1;
-    if (keypress == KEY_A || keypress == KEY_D)
-        data->hooks.horizontal = -1;
+	if (keypress == KEY_W || keypress == KEY_S)
+		data->hooks.vertical = -1;
+	if (keypress == KEY_A || keypress == KEY_D)
+		data->hooks.horizontal = -1;
 	if (keypress == KEY_LEFT || keypress == KEY_RIGHT)
 		data->hooks.rotation = -1;
-    return(0);
+	return (0);
 }

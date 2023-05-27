@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:54:56 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/20 11:33:10 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:03:46 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	_dda(t_data *data, t_dist *dist, double ray_x, double ray_y)
 	}
 }
 
-t_dist dda(t_data *data, double ray_x, double ray_y)
+t_dist	dda(t_data *data, double ray_x, double ray_y)
 {
-	t_dist dist;
+	t_dist	dist;
 
 	data->step_x = -1;
 	data->step_y = -1;
@@ -69,16 +69,20 @@ t_dist dda(t_data *data, double ray_x, double ray_y)
 	dist.distance = 0;
 	data->s_delta_x = 1.0 / fabs(ray_x);
 	data->s_delta_y = 1.0 / fabs(ray_y);
-	data->delta_x = ((int)data->player.x + 1 - data->player.x) * data->s_delta_x;
-	data->delta_y = ((int)data->player.y + 1 - data->player.y) * data->s_delta_y;
+	data->delta_x = ((int)data->player.x + 1 - data->player.x)
+		* data->s_delta_x;
+	data->delta_y = ((int)data->player.y + 1 - data->player.y)
+		* data->s_delta_y;
 	if (ray_x < 0)
-		data->delta_x = (data->player.x - (int)data->player.x) * data->s_delta_x;
+		data->delta_x = (data->player.x - (int)data->player.x)
+			* data->s_delta_x;
 	if (ray_y < 0)
-		data->delta_y = (data->player.y - (int)data->player.y) * data->s_delta_y;
+		data->delta_y = (data->player.y - (int)data->player.y)
+			* data->s_delta_y;
 	if (ray_x > 0)
 		data->step_x = 1;
 	if (ray_y > 0)
 		data->step_y = 1;
 	_dda(data, &dist, ray_x, ray_y);
-	return(dist);
+	return (dist);
 }

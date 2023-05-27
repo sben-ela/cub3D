@@ -6,32 +6,32 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:12 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/26 22:15:47 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:28:49 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void draw_floor_and_ceiling(t_data *data)
+void	draw_floor_and_ceiling(t_data *data)
 {
-    int i;
-    int j;
-    int color;
+	int	i;
+	int	j;
+	int	color;
 
-    i = 0;
-    while (i < WIDTH)
-    {
-        j = 0;
-        color = data->ceiling;
-        while (j < HEIGHT)
-        {
-            if (j > HEIGHT / 2)
-                color = data->floor;
-            ft_put_pixel(&data->img, i, j, color);
-            j++;
-        }
-        i++;
-    }    
+	i = 0;
+	while (i < WIDTH)
+	{
+		j = 0;
+		color = data->ceiling;
+		while (j < HEIGHT)
+		{
+			if (j > HEIGHT / 2)
+				color = data->floor;
+			ft_put_pixel(&data->img, i, j, color);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	draw_line(t_data *data, double ray_x, double ray_y, double len)
@@ -54,7 +54,7 @@ void	draw_line(t_data *data, double ray_x, double ray_y, double len)
 
 void	draw_rays(t_data *data)
 {
-	int 	i;
+	int		i;
 	double	cam_x;
 	double	ray_x;
 	double	ray_y;
@@ -74,31 +74,28 @@ void	draw_rays(t_data *data)
 
 void	draw_walls(t_data *data, double len, int x, double wallx)
 {
-	double	start;
-	double	end;
-    double	x_prime;
-	double	y_prime;
 	t_img	*texture;
 	int		skipped;
 	int		i;
 
 	texture = &data->texture[data->compass - 1];
 	skipped = 0;
-	start = HEIGHT / 2 - len / 2;
-	end = HEIGHT / 2 + len / 2;
-	if (start < 0)
+	data->start = HEIGHT / 2 - len / 2;
+	data->end = HEIGHT / 2 + len / 2;
+	if (data->start < 0)
 	{
-		skipped = -start;
-		start = 0;
+		skipped = -data->start;
+		data->start = 0;
 	}
-	if (end > HEIGHT)
-		end = HEIGHT;
-    i = 0;
-    x_prime = texture->width * wallx;
-	while (start + i < end)
+	if (data->end > HEIGHT)
+		data->end = HEIGHT;
+	i = 0;
+	data->x_prime = texture->width * wallx;
+	while (data->start + i < data->end)
 	{
-		y_prime = ((i + skipped) / len) * texture->height;
-		ft_put_pixel(&data->img, x, start + i, ft_get_pixel(texture, x_prime, y_prime));
-        i++;
+		data->y_prime = ((i + skipped) / len) * texture->height;
+		ft_put_pixel(&data->img, x, data->start + i,
+			ft_get_pixel(texture, data->x_prime, data->y_prime));
+		i++;
 	}
 }

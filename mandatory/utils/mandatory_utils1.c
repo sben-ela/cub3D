@@ -6,26 +6,27 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:17 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/26 14:33:32 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:10:14 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void get_player_pos(t_player *player, char **map)
+void	get_player_pos(t_player *player, char **map)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		j = 0;
 		line = map[i];
-		while(line[j])
+		while (line[j])
 		{
-			if (line[j] == 'N' || line[j] == 'W' || line[j] == 'S' || line[j] == 'E')
+			if (line[j] == 'N' || line[j] == 'W' || line[j] == 'S'
+				|| line[j] == 'E')
 			{
 				player->x = j + 0.5;
 				player->y = i + 0.5;
@@ -83,11 +84,11 @@ void	new_image(t_data *data)
 	if (!data->img.img)
 		exit(EXIT_FAILURE);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-	&data->img.size_line, &data->img.endian);
+			&data->img.size_line, &data->img.endian);
 }
 
-void    ft_destroy(t_data *data)
+void	ft_destroy(t_data *data)
 {
-    mlx_destroy_window(data->mlx, data->win);
-    exit (0);
+	mlx_destroy_window(data->mlx, data->win);
+	exit (0);
 }
