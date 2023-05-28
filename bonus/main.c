@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 23:57:53 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 19:02:43 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:07:25 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void	init_textures(t_data *data, int i, int hight, int width)
 {
 	data->door.img = mlx_xpm_file_to_image(data->mlx,
 			"textures/door_1.xpm", &data->door.width, &data->door.height);
-	if (!data->door.img)
+	data->fire = mlx_xpm_file_to_image(data->mlx, "weapon/fire.xpm",
+			&width, &hight);
+	if (!data->door.img || ! data->fire)
 		(printf("invalid door"), exit (1));
 	data->door.addr = mlx_get_data_addr(data->door.img, &data->door.bpp,
 			&data->door.size_line, &data->door.endian);
@@ -65,8 +67,6 @@ void	init_textures(t_data *data, int i, int hight, int width)
 			exit (EXIT_FAILURE);
 		i++;
 	}
-	data->fire = mlx_xpm_file_to_image(data->mlx, "weapon/fire.xpm",
-			&width, &hight);
 	init_weapon(data);
 }
 

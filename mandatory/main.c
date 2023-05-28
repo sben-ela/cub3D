@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:56:00 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 19:57:06 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 22:08:22 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	init_textures(t_data *data)
 		data->texture[i].img = mlx_xpm_file_to_image(data->mlx, data->paths[i],
 				&data->texture[i].width, &data->texture[i].height);
 		if (!data->texture[i].img)
-		{
 			ft_error("invalid texure");
-		}
 		data->texture[i].addr = mlx_get_data_addr(data->texture[i].img,
 				&data->texture[i].bpp, &data->texture[i].size_line,
 				&data->texture[i].endian);
