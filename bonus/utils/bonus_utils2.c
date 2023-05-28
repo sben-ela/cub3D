@@ -6,24 +6,24 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:10:50 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/18 10:10:51 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 13:15:40 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
 
-void get_player_pos(t_player *player, char **map)
+void	get_player_pos(t_player *player, char **map)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 	char	*line;
 
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		j = 0;
 		line = map[i];
-		while(line[j])
+		while (line[j])
 		{
 			if (line[j] == 'N')
 			{
@@ -77,13 +77,12 @@ char	**get_map(int fd, int count)
 	return (map);
 }
 
-void	ft_voice(char *voice,  pid_t *pid)
+void	ft_voice(char *voice, pid_t *pid)
 {
-	static char *command[3] = {"afplay", 0, 0};
+	static char	*command[3] = {"afplay", 0, 0};
+
 	command[1] = voice;
-	
 	*pid = fork();
 	if (!*pid)
-		execve("/usr/bin/afplay", command, 0);	
+		execve("/usr/bin/afplay", command, 0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:54:56 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/20 11:41:15 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 14:34:53 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	check_wall(t_data *data, t_dist *dist, double ray_x, double ray_y)
 {
-	if (data->map[data->pos_y][data->pos_x] == '1' || data->map[data->pos_y][data->pos_x] == 'D')
+	if (data->map[data->pos_y][data->pos_x] == '1'
+		|| data->map[data->pos_y][data->pos_x] == 'D')
 	{
 		data->hitted = DOOR - (data->map[data->pos_y][data->pos_x] == '1');
 		if (data->side == VER)
@@ -25,7 +26,7 @@ int	check_wall(t_data *data, t_dist *dist, double ray_x, double ray_y)
 			data->compass = EAST;
 			if (ray_x < 0)
 				data->compass = WEST;
-			return (1) ;
+			return (1);
 		}
 		dist->distance = data->delta_y - data->s_delta_y;
 		dist->wall_x = data->player.x + (dist->distance * ray_x);
@@ -33,7 +34,7 @@ int	check_wall(t_data *data, t_dist *dist, double ray_x, double ray_y)
 		data->compass = NORTH;
 		if (ray_y > 0)
 			data->compass = SOUTH;
-		return (1) ;
+		return (1);
 	}
 	return (0);
 }
@@ -59,7 +60,7 @@ void	_dda(t_data *data, t_dist *dist, double ray_x, double ray_y)
 	}
 }
 
-t_dist dda(t_data *data, double ray_x, double ray_y)
+t_dist	dda(t_data *data, double ray_x, double ray_y)
 {
 	t_dist	dist;
 
@@ -70,16 +71,20 @@ t_dist dda(t_data *data, double ray_x, double ray_y)
 	dist.distance = 0;
 	data->s_delta_x = 1.0 / fabs(ray_x);
 	data->s_delta_y = 1.0 / fabs(ray_y);
-	data->delta_x = ((int)data->player.x + 1 - data->player.x) * data->s_delta_x;
-	data->delta_y = ((int)data->player.y + 1 - data->player.y) * data->s_delta_y;
+	data->delta_x = ((int)data->player.x
+			+ 1 - data->player.x) * data->s_delta_x;
+	data->delta_y = ((int)data->player.y
+			+ 1 - data->player.y) * data->s_delta_y;
 	if (ray_x < 0)
-		data->delta_x = (data->player.x - (int)data->player.x) * data->s_delta_x;
+		data->delta_x = (data->player.x
+				- (int)data->player.x) * data->s_delta_x;
 	if (ray_y < 0)
-		data->delta_y = (data->player.y - (int)data->player.y) * data->s_delta_y;
+		data->delta_y = (data->player.y
+				- (int)data->player.y) * data->s_delta_y;
 	if (ray_x > 0)
 		data->step_x = 1;
 	if (ray_y > 0)
 		data->step_y = 1;
 	_dda(data, &dist, ray_x, ray_y);
-	return(dist);
+	return (dist);
 }

@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:37:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/27 20:33:57 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:50:21 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef struct data
 	int			direction;
 	char		**paths;
 	char		**new_map;
+	int			size;
 }	t_data;
 
 typedef struct dist

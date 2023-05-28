@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/27 23:41:46 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 18:40:41 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct data
 	void		*weapon[85];
 	int			compass;
 	double		speed;
-	int		    count;
+	int			count;
 	int         *position;
 	int			floor;
 	int			ceiling;
@@ -129,13 +129,10 @@ typedef struct data
 	int			flag;
 	int			left_right;
 	int			up_down;
-	int			w;
+	int			size;
 	double		angle;
 	int			last_x;
 	double		last_y;
-	int			mouse;
-	int			keypress;
-	int			start;
 	int			hitted;
 	int			over;
 	int			pid;
@@ -151,6 +148,15 @@ typedef struct data
 	double		delta_y;
 	int			direction;
 	char		**paths;
+	int			start_x;
+	int			start_y;
+	int			end_x;
+	int			end_y;
+	double		start;
+	double		end;
+	double		x_prime;
+	double		y_prime;
+	int			skipped;
 }   t_data;
 
 typedef struct dist
@@ -160,12 +166,14 @@ typedef struct dist
 	int		direction;
 } t_dist;
 
+char		**ft_get_new_map(t_data *data, int i, int j, char **map);
+void		get_direction(t_data *data);
+void		fix_direction(t_data *data);
 void		rotate(double *x_prime, double *y_prime, double angle);
 void		draw_line(t_data *data, double ray_x, double ray_y, double len);
 void		ft_putplayer(t_data *data, double x, double y, int color);
 void    	ft_putcube(t_data *data, int x, int y, int color);
 void		draw_rays(t_data *data);
-void    	draw_minimap(t_data *data);
 void		ft_voice(char *voice,  pid_t *pid);
 int			ft_get_pixel(t_img *img, int x, int y);
 void		open_door(t_data *data);
@@ -183,16 +191,36 @@ char		*get_next_line(int fd);
 int			count_line(char *av);
 char		**get_map(int fd, int count);
 int			handle_mouse(int x, int y, t_data *data);
+void    	draw_minimap(t_data *data, char **map, int x, int y);
 int			mlx_mouse_move(void *win_ptr, int x, int y);
-
+char		*ft_itoa(int n);
+void		ft_destroy(t_data *data);
+void		weapon(t_data *data);
+char		*ft_strjoin(char *s1, char *s2);
 /*****************************/
-void 		check_args(int ac, char    *av[]);
-void 		check_file(char  **map, t_data *data);
+void		error(void);
+void		check_args(int ac, char *av[]);
+void		check_file(char **map, t_data *data);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char	*str);
-// void set_data(t_data    *data);
 int			ft_strncmp(const char	*str1, const char	*str2, size_t	n);
-int    		get_index_(char  *s, char    **map);
+int			get_index_(char *s, char **map);
 char		*ft_strtrim(char const	*s1, char const	*set);
+int			is_empty(char *s);
+int			is_map_line(char *s);
+void		double_free(char **s);
+int			getmapsize(char **map, int index);
+void		ft_strcpy(char *dst, const char *src);
+void		check_characters(int *characters, char **map, int i);
+void		check_colors(char **map, t_data *data);
+void		check_walls(int index, char **map, t_data *data);
+void		check_corners(char **map, int index, t_data *data);
+void		copy_init(char **copy, char **map, int index, int largest);
+int			get_largest(char **map, int index);
+void		fill_characters(int *characters);
+void		fill_space(char **copy, int largest, char **map, int index);
+int			get_index(char **map);
+void		check_elements(char **map);
+void		check_doors(char   **map);
 
 # endif
