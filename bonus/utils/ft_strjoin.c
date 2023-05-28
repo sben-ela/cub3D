@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:26:03 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/05/28 16:30:18 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:30:32 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,32 @@ char	*ft_strjoin(char *s1, char *s2)
 		s[i++] = s2[k++];
 	s[i] = '\0';
 	return (s);
+}
+
+int	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (0);
 }

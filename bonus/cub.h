@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 15:46:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 18:40:41 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:31:21 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ char		*ft_itoa(int n);
 void		ft_destroy(t_data *data);
 void		weapon(t_data *data);
 char		*ft_strjoin(char *s1, char *s2);
+char		*ft_strchr(const char *s, int c);
 /*****************************/
 void		error(void);
 void		check_args(int ac, char *av[]);
