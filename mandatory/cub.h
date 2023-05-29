@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nbarakat <nbarakat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 15:37:10 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 19:50:21 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:03:53 by nbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void		draw_rays(t_data *data);
 void		draw_line(t_data *data, double ray_x, double ray_y, double len);
 void		ft_destroy(t_data *data);
 /*****************************/
+void		error(void);
 void		check_args(int ac, char *av[]);
 void		check_file(char **map, t_data *data);
 char		**ft_split(char const *s, char c);
@@ -184,5 +185,19 @@ int			ft_atoi(const char	*str);
 int			ft_strncmp(const char	*str1, const char	*str2, size_t	n);
 int			get_index_(char *s, char **map);
 char		*ft_strtrim(char const	*s1, char const	*set);
-
+int			is_empty(char *s);
+int			is_map_line(char *s);
+void		double_free(char **s);
+int			getmapsize(char **map, int index);
+void		ft_strcpy(char *dst, const char *src);
+void		check_characters(int *characters, char **map, int i);
+void		check_colors(char **map, t_data *data);
+void		check_walls(int index, char **map, t_data *data);
+void		check_corners(char **map, int index, t_data *data);
+void		copy_init(char **copy, char **map, int index, int largest);
+int			get_largest(char **map, int index);
+void		fill_characters(int *characters);
+void		fill_space(char **copy, int largest, char **map, int index);
+int			get_index(char **map);
+void		check_elements(char **map);
 #endif

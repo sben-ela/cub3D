@@ -6,11 +6,28 @@
 /*   By: nbarakat <nbarakat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 20:25:48 by nbarakat          #+#    #+#             */
-/*   Updated: 2023/05/21 20:36:24 by nbarakat         ###   ########.fr       */
+/*   Updated: 2023/05/28 00:02:07 by nbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+void	is_number(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+			i++;
+		else
+		{
+			printf("R,G,B colors in range [0,255]: 0, 255, 255\n");
+			exit(1);
+		}
+	}
+}
 
 static long	ft_check(char	*str)
 {
@@ -21,22 +38,8 @@ static long	ft_check(char	*str)
 	{
 		i++;
 	}
+	is_number(str);
 	return (i);
-}
-
-void	is_number(const char *s)
-{
-    int i;
-    
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] >= '0' && s[i] <= '9')
-            i++;
-        else
-            printf("R,G,B colors in range [0,255]: 0, 255, 255\n"), exit(1);
-
-    }
 }
 
 int	ft_atoi(const char	*str)
@@ -48,7 +51,6 @@ int	ft_atoi(const char	*str)
 	result = 0;
 	sign = 1;
 	i = ft_check((char *)str);
-    is_number(str);
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')

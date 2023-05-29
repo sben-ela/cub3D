@@ -6,7 +6,7 @@
 /*   By: nbarakat <nbarakat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:54:53 by nbarakat          #+#    #+#             */
-/*   Updated: 2023/05/21 20:41:36 by nbarakat         ###   ########.fr       */
+/*   Updated: 2023/05/28 00:02:52 by nbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ static void	ft_position(const char *s, int *i, int *len, char c)
 		(*len)++;
 }
 
+void	set_ij(int	*i, int	*j)
+{
+	*i = 0;
+	*j = 0;
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**ptr;
@@ -76,8 +82,7 @@ char	**ft_split(char const *s, char c)
 	ptr = (char **)malloc((ft_countwords(s, c) + 1) * sizeof(char *));
 	if (!ptr)
 		return (NULL);
-	i = 0;
-	j = 0;
+	set_ij(&i, &j);
 	while (s[i])
 	{
 		ft_position(s, &i, &len, c);
@@ -86,8 +91,8 @@ char	**ft_split(char const *s, char c)
 			ptr[j] = malloc((len - i + 1) * sizeof (char));
 			ft_strlcpy (ptr[j++], s + i, len - i + 1);
 		}
-        else 
-            printf("error\n"), exit(1);
+		else
+			error();
 		i = len;
 	}
 	ptr[j] = NULL;

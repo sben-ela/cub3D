@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:14:05 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 16:18:01 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:36:07 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	_handle_mouse(t_data *data, int x, int y)
 
 	if (y - data->last_y > 0)
 		data->up_down += 5;
-	else
+	else if (y - data->last_y < 0)
 		data->up_down -= 5;
 	data->last_y = y;
 	dx = x - data->last_x;

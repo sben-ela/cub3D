@@ -6,7 +6,7 @@
 /*   By: sben-ela <sben-ela@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:10:40 by sben-ela          #+#    #+#             */
-/*   Updated: 2023/05/28 16:13:10 by sben-ela         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:37:21 by sben-ela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ void	draw_floor_and_ceiling(t_data *data)
 	while (i < WIDTH)
 	{
 		j = 0;
-		color = BLACK;
+		color = data->ceiling;
 		while (j < HEIGHT)
 		{
 			if (j > HEIGHT / 2 - data->up_down)
-				color = NONE;
+				color = data->floor;
 			ft_put_pixel(&data->img, i, j, color);
 			j++;
 		}

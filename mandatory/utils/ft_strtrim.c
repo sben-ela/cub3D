@@ -6,7 +6,7 @@
 /*   By: nbarakat <nbarakat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:50:36 by nbarakat          #+#    #+#             */
-/*   Updated: 2023/05/23 22:37:40 by nbarakat         ###   ########.fr       */
+/*   Updated: 2023/05/28 00:03:13 by nbarakat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_strtrim(char const	*s1, char const	*set)
 	char	*str;
 	char	*trim;
 	char	*ptr;
-	int    	i;
+	int		i;
 
 	if (!s1 || !set)
 		return (NULL);
